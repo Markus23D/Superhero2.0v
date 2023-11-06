@@ -61,7 +61,6 @@ public class Database {
         return heroNames;
 
 
-
     }
 
 
@@ -70,15 +69,30 @@ public class Database {
             superheroArrayList.remove(superhero);
         }
     }
+
     public void saveSuperheroes() {
-        String filename = "superhero.txt";
+        String filename = "superhero.csv";
         try {
             PrintStream output = new PrintStream(new File(filename));
+            output.println("Heroname,Realname,SuperPower,Strength,BirthYear,IsHuman");
             for (Superhero superhero : superheroArrayList) {
-                output.println(superhero);
+                output.println(superhero.csvString());
             }
+            output.close();
+
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
+        }
+    }
+
+    public void writeDataToCSV(PrintStream output, String[] data) {
+        for (int i = 0; i < data.length; i++) {
+            output.print(data[i]);
+            if (i > data.length - 1) {
+                output.print(",");
+            } else {
+                output.println();
+            }
         }
     }
 }

@@ -69,6 +69,9 @@ public class Superhero {
                 "\n" + "year they were born: " + birthYear +
                 "\n" + "are they human: " + isHuman;
     }
+    public String csvString() {
+        return heroName+ "," + realName + "," + superPower + "," + strength + "," + birthYear + "," + isHuman;
+    }
 
 
 
