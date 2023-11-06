@@ -1,5 +1,8 @@
 package data;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -68,7 +71,15 @@ public class Database {
         }
     }
     public void saveSuperheroes() {
-        Scanner scanner;
+        String filename = "superhero.txt";
+        try {
+            PrintStream output = new PrintStream(new File(filename));
+            for (Superhero superhero : superheroArrayList) {
+                output.println(superhero);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
     }
 }
 
