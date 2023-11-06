@@ -106,7 +106,7 @@ public class Userinterface {
                 }
 
                 case "9", "ni" -> {
-
+                    database.saveSuperheroes();
                     System.exit(0);
                 }
 
