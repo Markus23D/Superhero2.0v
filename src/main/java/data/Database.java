@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Database {
+    private String filename = "superhero.csv";
 
     private ArrayList<Superhero> superheroArrayList = new ArrayList<>();
 
@@ -71,7 +72,6 @@ public class Database {
     }
 
     public void saveSuperheroes() {
-        String filename = "superhero.csv";
         try {
             PrintStream output = new PrintStream(new File(filename));
             output.println("Heroname,Realname,SuperPower,Strength,BirthYear,IsHuman");
@@ -84,15 +84,31 @@ public class Database {
             System.out.println("File not found");
         }
     }
+    public void loadSuperHeroData() {
+        try {
+            File file = new File(filename);
+            Scanner scanner = new Scanner(file);
+            scanner.nextLine();
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] values = line.split(",");
+                if (values.length == 6) {
+                    String heroName = values[0];
+                    String realName = values[1];
+                    String superpower = values[2];
+                    double strength = Double.parseDouble(values[3]);
+                    int birthYear = Integer.parseInt(values[4]);
+                    String isHuman = values[5];
 
-    public void writeDataToCSV(PrintStream output, String[] data) {
-        for (int i = 0; i < data.length; i++) {
-            output.print(data[i]);
-            if (i > data.length - 1) {
-                output.print(",");
-            } else {
-                output.println();
+                    Superhero superhero = new Superhero(heroName,realName,superpower,strength,birthYear,isHuman);
+                    superheroArrayList.add(superhero);
+                } else {
+
+                }
             }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
         }
     }
 }

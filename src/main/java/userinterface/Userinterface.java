@@ -26,6 +26,7 @@ public class Userinterface {
     }
 
     public void StartProgram() {
+        database.loadSuperHeroData();
         boolean run = true;
 
 
