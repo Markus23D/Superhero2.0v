@@ -1,5 +1,6 @@
 package userinterface;
 
+import data.Controller;
 import data.Database;
 import data.Superhero;
 
@@ -9,7 +10,7 @@ import java.util.Scanner;
 
 public class Userinterface {
     Scanner scanner = new Scanner(System.in);
-    Database database = new Database();
+    Controller controller = new Controller();
 
 
     public void welcomeMessage() {
@@ -26,7 +27,7 @@ public class Userinterface {
     }
 
     public void StartProgram() {
-        database.loadSuperHeroData();
+        controller.loadSuperHeroData();
         boolean run = true;
 
 
@@ -78,7 +79,7 @@ public class Userinterface {
                     } while (human != 'j' && human != 'n');
 
 
-                    database.addSuperhero(heroName, realName, superPower, strength, birthYear, String.valueOf(isHuman));
+                    controller.addSuperhero(heroName, realName, superPower, strength, birthYear, String.valueOf(isHuman));
                     System.out.println("Superhero added to the database");
                     scanner.nextLine();
 
@@ -113,17 +114,17 @@ public class Userinterface {
                     }
                     secondChoice = scanner.nextInt();
                     scanner.nextLine();
-                  database.compareForPrimThenSec(choice,secondChoice);
-                  database.sort();
-                    System.out.println(database.printAllSuperheroes());
+                  controller.compareForPrimThenSec(choice,secondChoice);
+                  controller.sort();
+                    System.out.println(controller.printAllSuperheroes());
 
 
                 }
 
                 case "3", "three" -> {
                     System.out.println("Search for a superhero");
-                    String brugerSøgning = scanner.nextLine();
-                    System.out.println(database.findHeroName(brugerSøgning));
+                    String userInput = scanner.nextLine();
+                    System.out.println(controller.findHeroName(userInput));
 
                 }
 
@@ -137,7 +138,7 @@ public class Userinterface {
                 }
 
                 case "9", "nine" -> {
-                    database.saveSuperheroes();
+                    controller.saveSuperheroes();
                     System.exit(0);
                 }
 
@@ -151,7 +152,7 @@ public class Userinterface {
         System.out.println("Enter your search criteria");
         String userInput = scanner.nextLine();
 
-        ArrayList<Superhero> searchResult = database.findHeroName(userInput);
+        ArrayList<Superhero> searchResult = controller.findHeroName(userInput);
 
         Superhero superheroToEdit = null;
 
@@ -225,7 +226,7 @@ public class Userinterface {
     public void deleteSuperhero() {
         System.out.println("Input a search for the hero you want to delete");
         String superheroname = scanner.nextLine();
-        ArrayList<Superhero> results = database.search(superheroname);
+        ArrayList<Superhero> results = controller.search(superheroname);
 
 
         if (results.isEmpty()) {
@@ -234,7 +235,7 @@ public class Userinterface {
 
         } else if (results.size() == 1) {
             Superhero superhero = results.get(0);
-            database.deleteSuperhero(superhero);
+            controller.deleteSuperhero(superhero);
             System.out.println(superhero.getHeroName() + " has been deleted from the database");
             System.out.println("\u2500".repeat(50));
         } else {
@@ -248,7 +249,7 @@ public class Userinterface {
 
             if (valg >= 1 && valg <= results.size()) {
                 Superhero superhero = results.get(valg - 1);
-                database.deleteSuperhero(superhero);
+                controller.deleteSuperhero(superhero);
                 System.out.println(superhero.getHeroName() + " has been deleted from the database");
                 System.out.println("\u2500".repeat(50));
             } else {
