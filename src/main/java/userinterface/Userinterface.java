@@ -86,7 +86,54 @@ public class Userinterface {
 
                 }
                 case "2", "two" -> {
-                    System.out.println(database.printAllSuperheroes());
+                    System.out.println("How would you like to sort your superheroes?");
+                    System.out.println("Enter 1 to sort by HERONAME");
+                    System.out.println("Enter 2 to sort by REALNAME");
+                    System.out.println("Enter 3 to sort by BIRTHYEAR");
+                    System.out.println("Enter 4 to sort by SUPERPOWER");
+                    System.out.println("Enter 5 to sort by STRENGTH");
+                    System.out.println("Enter 6 to sort by ISHUMAN");
+                    int choice;
+                    while (!scanner.hasNextInt()) {
+                        System.out.println("Input a number");
+                        scanner.nextLine();
+                    }
+                    choice = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (choice) {
+                        case 1:
+                            database.sortByHeroName();
+                            System.out.println(database.printAllSuperheroes());
+
+                            break;
+                        case 2:
+                            database.sortByRealName();
+                            System.out.println(database.printAllSuperheroes());
+
+                            break;
+                        case 3:
+                            database.sortByBirthYear();
+                            System.out.println(database.printAllSuperheroes());
+
+                            break;
+                        case 4:
+                            database.sortBySuperPower();
+                            System.out.println(database.printAllSuperheroes());
+
+                            break;
+                        case 5:
+                            database.sortByStrength();
+                            System.out.println(database.printAllSuperheroes());
+
+                            break;
+                        case 6:
+                            database.sortByIsHuman();
+                            System.out.println(database.printAllSuperheroes());
+                            break;
+                        default:
+                            System.out.println("Wrong input");
+                    }
+
 
                 }
 
@@ -115,6 +162,7 @@ public class Userinterface {
         }
 
     }
+
     public void editSuperhero() {
 
         System.out.println("Enter your search criteria");
@@ -224,7 +272,6 @@ public class Userinterface {
                 System.out.println("Ugyldigt valg.");
             }
         }
-
 
 
     }

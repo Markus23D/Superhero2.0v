@@ -1,9 +1,12 @@
 package data;
 
+import comparator.*;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Database {
@@ -110,6 +113,25 @@ public class Database {
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
+
+    }
+    public void sortByHeroName() {
+        Collections.sort(superheroArrayList, new Heronamecomparator());
+    }
+    public void sortByRealName() {
+        Collections.sort(superheroArrayList, new Realnamecomparator());
+    }
+    public void sortBySuperPower() {
+        Collections.sort(superheroArrayList, new Superpowercomparator());
+    }
+    public void sortByStrength() {
+        Collections.sort(superheroArrayList, new Strengthcomparator());
+    }
+    public void sortByBirthYear() {
+        Collections.sort(superheroArrayList, new Birthyearcomparator());
+    }
+    public void sortByIsHuman() {
+        Collections.sort(superheroArrayList, new Ishumancomparator());
     }
 }
 
