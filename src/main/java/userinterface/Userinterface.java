@@ -226,7 +226,7 @@ public class Userinterface {
     public void deleteSuperhero() {
         System.out.println("Input a search for the hero you want to delete");
         String superheroname = scanner.nextLine();
-        ArrayList<Superhero> results = database.findHeroName(superheroname);
+        ArrayList<Superhero> results = controller.findHeroName(superheroname);
 
 
         if (results.isEmpty()) {
