@@ -41,10 +41,9 @@ public class Database {
         boolean herofound = false;
         for (Superhero superhero : superheroArrayList) {
             if (superhero.getHeroName().toLowerCase().trim().contains(superHeroName.toLowerCase())) {
-                ArrayList<Superhero> searchResults = new ArrayList<>();
-                searchResults.add(superhero);
+                heroNames.add(superhero);
                 herofound = true;
-                return searchResults;
+                return heroNames;
             }
         }
         return null;

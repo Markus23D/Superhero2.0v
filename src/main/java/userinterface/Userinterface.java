@@ -225,7 +225,7 @@ public class Userinterface {
     public void deleteSuperhero() {
         System.out.println("Input a search for the hero you want to delete");
         String superheroname = scanner.nextLine();
-        ArrayList<Superhero> results = database.search(superheroname);
+        ArrayList<Superhero> results = database.findHeroName(superheroname);
 
 
         if (results.isEmpty()) {
@@ -237,7 +237,7 @@ public class Userinterface {
             database.deleteSuperhero(superhero);
             System.out.println(superhero.getHeroName() + " has been deleted from the database");
             System.out.println("\u2500".repeat(50));
-        } else {
+        } else  {
             System.out.println("Multiple matches found, pick by entering a number");
             for (int i = 0; i < results.size(); i++) {
                 Superhero superhero = results.get(i);
