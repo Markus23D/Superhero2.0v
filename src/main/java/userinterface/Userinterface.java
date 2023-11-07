@@ -13,15 +13,15 @@ public class Userinterface {
 
 
     public void welcomeMessage() {
-        System.out.println("Velkommen til SUPERHERO UNIVERSET");
+        System.out.println("Welcome to the SUPERHERO UNIVERSE");
         System.out.println("\u2500".repeat(50) + " ");
 
-        System.out.println("Indtast 1 for at oprette en ny superhelt");
-        System.out.println("Indtast 2 for at se alle superhelte");
-        System.out.println("Indtast 3 for at søge på en superhelt");
-        System.out.println("Indtast 4 for at redigere en superhelt");
-        System.out.println("Indtast 5 for at slette en superhelt");
-        System.out.println("Indtast 9 for at afslutte");
+        System.out.println("Enter 1 to CREATE a new superhero");
+        System.out.println("Enter 2 to VIEW your superheroes");
+        System.out.println("Enter 3 to SEARCH for a superhero");
+        System.out.println("Enter 4 to EDIT a superhero");
+        System.out.println("Enter 5 to DELETE a superhero");
+        System.out.println("Enter 9 to EXIT");
         System.out.println("\u2500".repeat(50) + " ");
     }
 
@@ -39,7 +39,7 @@ public class Userinterface {
 
 
             switch (command) {
-                case "1", "et" -> {
+                case "1", "one" -> {
                     System.out.println("Input your superheros hero name: ");
                     String heroName = scanner.nextLine();
 
@@ -80,33 +80,33 @@ public class Userinterface {
 
 
                     database.addSuperhero(heroName, realName, superPower, strength, birthYear, String.valueOf(isHuman));
-                    System.out.println("Superhelt tilføjet til Database");
+                    System.out.println("Superhero added to the database");
                     scanner.nextLine();
 
 
                 }
-                case "2", "to" -> {
+                case "2", "two" -> {
                     System.out.println(database.printAllSuperheroes());
 
                 }
 
-                case "3", "tre" -> {
-                    System.out.println("Søg efter en superhelt.");
+                case "3", "three" -> {
+                    System.out.println("Search for a superhero");
                     String brugerSøgning = scanner.nextLine();
                     System.out.println(database.findHeroName(brugerSøgning));
 
                 }
 
-                case "4", "fire" -> {
-                    redigerPerson();
+                case "4", "four" -> {
+                    editSuperhero();
 
                 }
 
-                case "5", "fem" -> {
+                case "5", "five" -> {
                     sletSuperHero();
                 }
 
-                case "9", "ni" -> {
+                case "9", "nine" -> {
                     database.saveSuperheroes();
                     System.exit(0);
                 }
@@ -115,25 +115,25 @@ public class Userinterface {
         }
 
     }
-    public void redigerPerson() {
-        //Her kan delvist navn indtastes
-        System.out.println("Indtast søgekriterium for person");
-        String brugerInput = scanner.nextLine();
+    public void editSuperhero() {
 
-        ArrayList<Superhero> søgeResultat = database.findHeroName(brugerInput);
+        System.out.println("Enter your search criteria");
+        String userInput = scanner.nextLine();
 
-        Superhero superheltDerSkalRedigeres = null;
+        ArrayList<Superhero> searchResult = database.findHeroName(userInput);
 
-        if (søgeResultat.size() == 0) {
-            System.out.println("Der findes ingen helte i listen med navn: " + "\"" + brugerInput + "\"");
+        Superhero superheroToEdit = null;
 
-        } else if (søgeResultat.size() >= 1) {
+        if (searchResult.size() == 0) {
+            System.out.println("There is no superhero in the list with the name: " + "\"" + userInput + "\"");
+
+        } else if (searchResult.size() >= 1) {
 
 
             // Vælg en person i søgeresultat med flere personer
-            System.out.println("Vælg person");
+            System.out.println("Pick your superhero");
             int tæller = 1;
-            for (Superhero superhero : søgeResultat) {
+            for (Superhero superhero : searchResult) {
                 System.out.println(tæller++ + ". " +
                         superhero.getHeroName() + " " +
                         superhero.getRealName() + " " +
@@ -142,49 +142,49 @@ public class Userinterface {
                         superhero.getIsHuman() + " " +
                         superhero.getStrength()
                 );
-                int superheltValg = scanner.nextInt();
+                int superheroChoice = scanner.nextInt();
                 scanner.nextLine();
-                superheltDerSkalRedigeres = søgeResultat.get(superheltValg - 1);
+                superheroToEdit = searchResult.get(superheroChoice - 1);
             }
         } else {
-            superheltDerSkalRedigeres = søgeResultat.get(0);
+            superheroToEdit = searchResult.get(0);
         }
 
-        if (superheltDerSkalRedigeres != null) {
-            System.out.println("Rediger personinformation. Tryk ENTER hvis information ikke skal redigeres.");
-            String nyVærdi;
-            System.out.println("Helte navn: " + superheltDerSkalRedigeres.getHeroName());
-            nyVærdi = scanner.nextLine();
-            if (!nyVærdi.isEmpty()) {
-                superheltDerSkalRedigeres.setHeroName(nyVærdi);
+        if (superheroToEdit != null) {
+            System.out.println("Edit superhero information. Press ENTER to keep previous information.");
+            String newValue;
+            System.out.println("Hero name: " + superheroToEdit.getHeroName());
+            newValue = scanner.nextLine();
+            if (!newValue.isEmpty()) {
+                superheroToEdit.setHeroName(newValue);
             }
-            System.out.println("Rigtige navn: " + superheltDerSkalRedigeres.getRealName());
-            nyVærdi = scanner.nextLine();
-            if (!nyVærdi.isEmpty()) {
-                superheltDerSkalRedigeres.setRealName(nyVærdi);
+            System.out.println("Real name: " + superheroToEdit.getRealName());
+            newValue = scanner.nextLine();
+            if (!newValue.isEmpty()) {
+                superheroToEdit.setRealName(newValue);
             }
-            System.out.println("Lavet år:: " + superheltDerSkalRedigeres.getBirthYear());
-            nyVærdi = scanner.nextLine();
-            if (!nyVærdi.isEmpty()) {
-                superheltDerSkalRedigeres.setBirthYear(Integer.parseInt(nyVærdi));
+            System.out.println("Birth year: " + superheroToEdit.getBirthYear());
+            newValue = scanner.nextLine();
+            if (!newValue.isEmpty()) {
+                superheroToEdit.setBirthYear(Integer.parseInt(newValue));
             }
-            System.out.println("Superkraft: " + superheltDerSkalRedigeres.getSuperPower());
-            nyVærdi = scanner.nextLine();
-            if (!nyVærdi.isEmpty()) {
-                superheltDerSkalRedigeres.setSuperPower(nyVærdi);
+            System.out.println("Superpower: " + superheroToEdit.getSuperPower());
+            newValue = scanner.nextLine();
+            if (!newValue.isEmpty()) {
+                superheroToEdit.setSuperPower(newValue);
             }
-            System.out.println("IsHuman: " + superheltDerSkalRedigeres.getIsHuman());
-            nyVærdi = scanner.nextLine();
-            if (!nyVærdi.isEmpty()) {
-                superheltDerSkalRedigeres.setIsHuman(nyVærdi);
+            System.out.println("IsHuman: " + superheroToEdit.getIsHuman());
+            newValue = scanner.nextLine();
+            if (!newValue.isEmpty()) {
+                superheroToEdit.setIsHuman(newValue);
             }
-            System.out.println("Strenght: " + superheltDerSkalRedigeres.getStrength());
-            nyVærdi = scanner.nextLine();
-            if (!nyVærdi.isEmpty()) {
-                superheltDerSkalRedigeres.setStrength(Double.parseDouble(nyVærdi));
+            System.out.println("Strengh: " + superheroToEdit.getStrength());
+            newValue = scanner.nextLine();
+            if (!newValue.isEmpty()) {
+                superheroToEdit.setStrength(Double.parseDouble(newValue));
             }
 
-            System.out.println(superheltDerSkalRedigeres + " er opdateret.");
+            System.out.println(superheroToEdit + " is updated.");
 
         }
 
