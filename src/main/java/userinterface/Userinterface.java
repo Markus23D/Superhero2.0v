@@ -32,11 +32,10 @@ public class Userinterface {
 
         while (run) {
             welcomeMessage();
-
+            System.out.print("Input: ");
             String input = scanner.nextLine().trim().toLowerCase();
             String[] commands = input.split("\\s+");
             String command = commands[0];
-
 
             switch (command) {
                 case "1", "one" -> {
@@ -86,7 +85,7 @@ public class Userinterface {
 
                 }
                 case "2", "two" -> {
-                    System.out.println("How would you like to sort your superheroes?");
+                    System.out.println("How would you like to sort your primary attribute?");
                     System.out.println("Enter 1 to sort by HERONAME");
                     System.out.println("Enter 2 to sort by REALNAME");
                     System.out.println("Enter 3 to sort by BIRTHYEAR");
@@ -100,39 +99,23 @@ public class Userinterface {
                     }
                     choice = scanner.nextInt();
                     scanner.nextLine();
-                    switch (choice) {
-                        case 1:
-                            database.sortByHeroName();
-                            System.out.println(database.printAllSuperheroes());
-
-                            break;
-                        case 2:
-                            database.sortByRealName();
-                            System.out.println(database.printAllSuperheroes());
-
-                            break;
-                        case 3:
-                            database.sortByBirthYear();
-                            System.out.println(database.printAllSuperheroes());
-
-                            break;
-                        case 4:
-                            database.sortBySuperPower();
-                            System.out.println(database.printAllSuperheroes());
-
-                            break;
-                        case 5:
-                            database.sortByStrength();
-                            System.out.println(database.printAllSuperheroes());
-
-                            break;
-                        case 6:
-                            database.sortByIsHuman();
-                            System.out.println(database.printAllSuperheroes());
-                            break;
-                        default:
-                            System.out.println("Wrong input");
+                    System.out.println("How would you like to sort your secondary attribute?");
+                    System.out.println("Enter 1 to sort by HERONAME");
+                    System.out.println("Enter 2 to sort by REALNAME");
+                    System.out.println("Enter 3 to sort by BIRTHYEAR");
+                    System.out.println("Enter 4 to sort by SUPERPOWER");
+                    System.out.println("Enter 5 to sort by STRENGTH");
+                    System.out.println("Enter 6 to sort by ISHUMAN");
+                    int secondChoice;
+                    while (!scanner.hasNextInt()) {
+                        System.out.println("Input a number");
+                        scanner.nextLine();
                     }
+                    secondChoice = scanner.nextInt();
+                    scanner.nextLine();
+                  database.compareForPrimThenSec(choice,secondChoice);
+                  database.sort();
+                    System.out.println(database.printAllSuperheroes());
 
 
                 }

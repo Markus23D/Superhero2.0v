@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Database {
@@ -132,6 +133,68 @@ public class Database {
     }
     public void sortByIsHuman() {
         Collections.sort(superheroArrayList, new Ishumancomparator());
+    }
+    private Comparator<Superhero> primaryComparator;
+    private Comparator<Superhero> secondaryComparator;
+
+    public void setPrimaryComparator(Comparator<Superhero> primaryComparator) {
+        this.primaryComparator = primaryComparator;
+    }
+
+    public void setSecondaryComparator(Comparator<Superhero> secondaryComparator) {
+        this.secondaryComparator = secondaryComparator;
+    }
+
+    public void compareForPrimThenSec(int primary, int secondary) {
+        switch (primary) {
+            case 1:
+                setPrimaryComparator(new Heronamecomparator());
+                break;
+            case 2:
+                setPrimaryComparator(new Realnamecomparator());
+                break;
+            case 3:
+                setPrimaryComparator(new Superpowercomparator());
+                break;
+            case 4:
+                setPrimaryComparator(new Strengthcomparator());
+                break;
+            case 5:
+                setPrimaryComparator(new Birthyearcomparator());
+                break;
+            case 6:
+                setPrimaryComparator(new Ishumancomparator());
+                break;
+            default:
+                System.out.println("Wrong input, try again");
+                break;
+        }
+        switch (secondary) {
+            case 1:
+                setSecondaryComparator(new Heronamecomparator());
+                break;
+            case 2:
+                setSecondaryComparator(new Realnamecomparator());
+                break;
+            case 3:
+                setSecondaryComparator(new Superpowercomparator());
+                break;
+            case 4:
+                setSecondaryComparator(new Strengthcomparator());
+                break;
+            case 5:
+                setSecondaryComparator(new Birthyearcomparator());
+                break;
+            case 6:
+                setSecondaryComparator(new Ishumancomparator());
+                break;
+            default:
+                System.out.println("Wrong input, try again");
+                break;
+        }
+    }
+    public void sort() {
+        Collections.sort(superheroArrayList,primaryComparator.thenComparing(secondaryComparator));
     }
 }
 

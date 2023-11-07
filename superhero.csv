@@ -1,6 +1,9 @@
 Heroname,Realname,SuperPower,Strength,BirthYear,IsHuman
-Joakim ,banan :(,jaer bror,1.0,1,false
-boakim ,top banan :(,jafdsfer bror,100.0,1,false
-aoakim ,za banan :(,fdsf bror,15.0,1,false
-Joakim ,ss banan :(,dfsd bror,132.0,1,true
-akim ,No banan :(,ffff bror,11.0,1,true
+AlfredSuperhero,RealnameAlfred, Flight, 15.0,4411,true
+Søren,allabi, klygtighed, 150.0,2002,false
+Kagemanden,Joakim, Spise kage, 666.0,2001,true
+Antman,August, Stærk, 15000.0,2002,true
+Kængurumanden,aarkus, Hoppe rundt, 150.0,2000,false
+Kængurumanden,barkus, Hoppe rundt, 150.0,2000,false
+Kængurumanden,carkus, Hoppe rundt, 150.0,2000,false
+Kængurumanden,darkus, Hoppe rundt, 150.0,2000,false
