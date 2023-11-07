@@ -174,5 +174,3 @@ public class Database {
         Collections.sort(superheroArrayList,primaryComparator.thenComparing(secondaryComparator));
     }
 }
-
-
