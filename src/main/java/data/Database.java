@@ -68,7 +68,7 @@ public class Database {
     }
 
 
-    public void sletSuperhero(Superhero superhero) {
+    public void deleteSuperhero(Superhero superhero) {
         if (superheroArrayList.contains(superhero)) {
             superheroArrayList.remove(superhero);
         }

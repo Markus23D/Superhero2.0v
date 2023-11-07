@@ -63,11 +63,11 @@ public class Superhero {
 
     public String toString() {
         return "Your superhero's hero name: " + heroName +
-                "\n" + "your superhero's real name: " + realName +
-                "\n" + "their super power: " + superPower +
-                "\n" + "their power level: " + strength +
-                "\n" + "year they were born: " + birthYear +
-                "\n" + "are they human: " + isHuman;
+                "\n" + "Your superhero's real name: " + realName +
+                "\n" + "Their super power: " + superPower +
+                "\n" + "Their strength: " + strength +
+                "\n" + "Year they were born: " + birthYear +
+                "\n" + "Are they human: " + isHuman;
     }
     public String csvString() {
         return heroName+ "," + realName + "," + superPower + "," + strength + "," + birthYear + "," + isHuman;

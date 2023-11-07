@@ -150,7 +150,7 @@ public class Userinterface {
                 }
 
                 case "5", "five" -> {
-                    sletSuperHero();
+                    deleteSuperhero();
                 }
 
                 case "9", "nine" -> {
@@ -239,37 +239,37 @@ public class Userinterface {
     }
 
     //slettefunktion
-    public void sletSuperHero() {
-        System.out.println("Søg på helten du vil slette");
-        String superheltnavn = scanner.nextLine();
-        ArrayList<Superhero> resultater = database.search(superheltnavn);
+    public void deleteSuperhero() {
+        System.out.println("Input a search for the hero you want to delete");
+        String superheroname = scanner.nextLine();
+        ArrayList<Superhero> results = database.search(superheroname);
 
 
-        if (resultater.isEmpty()) {
-            System.out.println("Ingen matchende superhelte fundet.");
+        if (results.isEmpty()) {
+            System.out.println("No matches found.");
             System.out.println("\u2500".repeat(50));
 
-        } else if (resultater.size() == 1) {
-            Superhero superhero = resultater.get(0);
-            database.sletSuperhero(superhero);
-            System.out.println(superhero.getHeroName() + " er blevet slettet fra databasen.");
+        } else if (results.size() == 1) {
+            Superhero superhero = results.get(0);
+            database.deleteSuperhero(superhero);
+            System.out.println(superhero.getHeroName() + " has been deleted from the database");
             System.out.println("\u2500".repeat(50));
         } else {
-            System.out.println("Flere matchende superhelte fundet. Vælg en ved at indtaste nummeret:");
-            for (int i = 0; i < resultater.size(); i++) {
-                Superhero superhelt = resultater.get(i);
-                System.out.println((i + 1) + ". " + superhelt.getHeroName());
+            System.out.println("Multiple matches found, pick by entering a number");
+            for (int i = 0; i < results.size(); i++) {
+                Superhero superhero = results.get(i);
+                System.out.println((i + 1) + ". " + superhero.getHeroName());
             }
 
             int valg = Integer.parseInt(scanner.nextLine());
 
-            if (valg >= 1 && valg <= resultater.size()) {
-                Superhero superhero = resultater.get(valg - 1);
-                database.sletSuperhero(superhero);
-                System.out.println(superhero.getHeroName() + " er blevet slettet fra databasen.");
+            if (valg >= 1 && valg <= results.size()) {
+                Superhero superhero = results.get(valg - 1);
+                database.deleteSuperhero(superhero);
+                System.out.println(superhero.getHeroName() + " has been deleted from the database");
                 System.out.println("\u2500".repeat(50));
             } else {
-                System.out.println("Ugyldigt valg.");
+                System.out.println("Invalid input");
             }
         }
 
