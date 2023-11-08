@@ -36,18 +36,6 @@ public class Database {
         return stringBuilder.toString();
     }
 
-    public ArrayList<Superhero> search(String superHeroName) {
-        ArrayList<Superhero> heroNames = new ArrayList<>();
-        boolean herofound = false;
-        for (Superhero superhero : superheroArrayList) {
-            if (superhero.getHeroName().toLowerCase().trim().contains(superHeroName.toLowerCase())) {
-                heroNames.add(superhero);
-                herofound = true;
-                return heroNames;
-            }
-        }
-        return null;
-    }
 
     public ArrayList<Superhero> findHeroName(String heroName) {
         ArrayList<Superhero> heroNames = new ArrayList<>();

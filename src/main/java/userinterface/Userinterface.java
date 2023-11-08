@@ -66,9 +66,9 @@ public class Userinterface {
                     char human;
                     boolean isHuman = true;
                     do {
-                        System.out.println("Is the superhero a human? [j/n]");
+                        System.out.println("Is the superhero a human? [y/n]");
                         human = scanner.next().charAt(0);
-                        if (human == 'j') {
+                        if (human == 'y') {
                             isHuman = true;
                         } else if (human == 'n') {
                             isHuman = false;
@@ -76,7 +76,7 @@ public class Userinterface {
                         } else {
                             System.out.println("Invalid input");
                         }
-                    } while (human != 'j' && human != 'n');
+                    } while (human != 'y' && human != 'n');
 
 
                     controller.addSuperhero(heroName, realName, superPower, strength, birthYear, String.valueOf(isHuman));

@@ -19,7 +19,7 @@ public class Controller {
     }
 
     public ArrayList<Superhero> search(String superHeroName) {
-        return database.search(superHeroName);
+        return database.findHeroName(superHeroName);
     }
 
     public ArrayList<Superhero> findHeroName(String heroName) {
@@ -28,6 +28,7 @@ public class Controller {
 
     public void deleteSuperhero(Superhero superhero) {
         database.deleteSuperhero(superhero);
+
     }
 
     public void saveSuperheroes() {
@@ -53,4 +54,6 @@ public class Controller {
     public void sort() {
         database.sort();
     }
+
+
 }
