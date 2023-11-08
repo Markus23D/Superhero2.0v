@@ -1,17 +1,29 @@
 import data.Database;
 import data.Superhero;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SuperHeroTest {
 
+    private Database database;
+
+
+    @BeforeEach
+    public void setUp() {
+        database = new Database();
+    }
+
     @Test
     public void testAddSuperhero() {
         // lav en database og tilføj en superhelt
-        Database database = new Database();
+
         database.addSuperhero("Superman", "Clark Kent", "Flight", 100, 1938, "Human");
 
 
@@ -36,7 +48,7 @@ public class SuperHeroTest {
 
     @Test
     public void testPrintAllSuperheroes() {
-        Database database = new Database();
+
         // tilføj superhelte til database
         database.addSuperhero("Superman", "Clark Kent", "Flight", 100, 1938, "Human");
         database.addSuperhero("Batman", "Bruce Wayne", "Detective Skills", 90, 1939, "Human");
@@ -51,7 +63,7 @@ public class SuperHeroTest {
 
     @Test
     public void testfindHeroName() {
-        Database database = new Database();
+
         // tilføj superhelte til database
         database.addSuperhero("Superman", "Clark Kent", "Flight", 100, 1938, "Human");
         database.addSuperhero("Batman", "Bruce Wayne", "Detective Skills", 90, 1939, "Human");
@@ -69,23 +81,23 @@ public class SuperHeroTest {
 
     @Test
     public void testDeleteSuperhero() {
-        //skal bruge lidt hjælp til den her :)
-        Database database = new Database();
-        // tilføj superhelt til database
-        Superhero superhero = new Superhero("Superman", "Clark Kent", "Flight", 100, 1938, "Human");
-        database.addSuperhero("superman", "Clark kent", "Flight", 100, 1938, "Human");
+        // Create a superhero and add it to the database
 
+        database.addSuperhero("Superman", "Clark Kent", "Flight", 100, 1938, "Human");
 
+        Superhero superhero = database.getSuperheroArrayList().get(0);
+
+        // Ensure the superhero is in the database
         ArrayList<Superhero> superheroList = database.getSuperheroArrayList();
         assertEquals(1, superheroList.size());
         assertTrue(superheroList.contains(superhero));
 
-        // slet superhelt
+        // Delete the superhero from the database
         database.deleteSuperhero(superhero);
 
-        // chekker om superhelten er blevet fjernet
+        // Check if the superhero has been removed from the database
         assertEquals(0, superheroList.size());
         assertFalse(superheroList.contains(superhero));
-        //bev
     }
+
 }
