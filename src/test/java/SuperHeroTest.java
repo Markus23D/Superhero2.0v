@@ -4,9 +4,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -98,6 +101,44 @@ public class SuperHeroTest {
         // Check if the superhero has been removed from the database
         assertEquals(0, superheroList.size());
         assertFalse(superheroList.contains(superhero));
+    }
+    @Test
+    public void testSaveAndLoadSuperheroData() {
+        String fileName = "superhero.csv";
+        ArrayList<Superhero> superheroArrayList = new ArrayList<>();
+        Superhero superhero1 = new Superhero("Superman1", "Clark Kent1", "Flight1", 101, 1938, "Human");
+        Superhero superhero2 = new Superhero("Superman2", "Clark Kent2", "Flight2", 102, 1939, "Void");
+        Superhero superhero3 = new Superhero("Superman3", "Clark Kent2", "Flight3", 103, 1940, "String");
+
+        try {
+            PrintStream output = new PrintStream(fileName);
+            output.println("Heroname,Realname,SuperPower,Strength,BirthYear,IsHuman");
+            for (Superhero superhero : superheroArrayList) {
+                output.println(superhero.csvString());
+            }
+            output.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
+
+        Scanner scanner = new Scanner(fileName);
+        scanner.nextLine();
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            String[] values = line.split(",");
+            if (values.length == 6) {
+                String heroName = values[0];
+                String realName = values[1];
+                String superpower = values[2];
+                double strength = Double.parseDouble(values[3]);
+                int birthYear = Integer.parseInt(values[4]);
+                String isHuman = values[5];
+
+                Superhero superhero = new Superhero(heroName, realName, superpower, strength, birthYear, isHuman);
+                superheroArrayList.add(superhero);
+                assertEquals(3, superheroArrayList.size());
+            }
+        }
     }
 
 }
